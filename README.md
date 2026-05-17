@@ -49,14 +49,3 @@ The live page uses `index.html` in the root of the repository. The repository ro
 - Shows where rounds have been played
 - Uses course-location mapping data from `golf-course-locations-mapping.csv`
 
-## Important Data Note
-
-The dashboard is self-contained. The data is embedded inside the HTML file at the time the dashboard is generated.
-
-This means:
-
-- Updating CSV files in `input-data/` will **not** automatically update the live dashboard.
-- The dashboard must be regenerated after new golf data is added.
-- Each regenerated version should be saved as a new version, such as `dashboard-golf-v3.html`.
-
-o/dashboards-golf/index.html)
