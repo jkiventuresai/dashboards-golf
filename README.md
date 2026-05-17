@@ -4,11 +4,6 @@ Interactive golf performance dashboard for tracking scoring trends, handicap mov
 
 Repository: [dashboards-golf](https://github.com/jkiventuresai/dashboards-golf)
 
-## Quick Links
-
-- [Official Live Dashboard](https://jkiventuresai.github.io/dashboards-golf/index.html)
-- [GitHub Pages Site Root](https://jkiventuresai.github.io/dashboards-golf/)
-- [GitHub Repository](https://github.com/jkiventuresai/dashboards-golf)
 
 ## Live Dashboard
 
@@ -18,35 +13,6 @@ Official published dashboard link:
 
 The live page uses `index.html` in the root of the repository. The repository root URL may also load the same file, but the official share link is the direct `index.html` URL above.
 
-## Current Dashboard Version
-
-- Current version: `dashboard-golf-v2.html`
-- GitHub Pages entry file: `index.html`
-- Data snapshot date: generated from the uploaded CSV files available at the time of dashboard creation
-
-## Folder Structure
-
-```text
-/
-├── index.html
-├── README.md
-├── input-data/
-│   ├── golf-club-yardage-mapping.csv
-│   ├── golf-course-locations-mapping.csv
-│   ├── golf-course-par-mapping.csv
-│   ├── golf-course-ratings-tracker-2025.csv
-│   ├── golf-course-ratings-tracker-2026.csv
-│   ├── golf-ghin-formula-mapping.csv
-│   ├── golf-score-tracker-2025.csv
-│   ├── golf-score-tracker-2026.csv
-│   ├── golf-shot-tracker-2025.csv
-│   └── golf-shots-tracker-2025.csv
-├── output-data/
-│   ├── dashboard-golf-v2.html
-│   └── dashboard-golf-v2-code.txt
-└── docs/
-    └── Instructions-GolfDashboardUpdate-v1.md
-```
 
 ## What This Dashboard Tracks
 
