@@ -2,15 +2,21 @@
 
 Interactive golf performance dashboard for tracking scoring trends, handicap movement, course performance, shot patterns, club yardages, and course locations.
 
-Repository: `dashboards-golf`
+Repository: [dashboards-golf](https://github.com/jkiventuresai/dashboards-golf)
+
+## Quick Links
+
+- [Official Live Dashboard](https://jkiventuresai.github.io/dashboards-golf/index.html)
+- [GitHub Pages Site Root](https://jkiventuresai.github.io/dashboards-golf/)
+- [GitHub Repository](https://github.com/jkiventuresai/dashboards-golf)
 
 ## Live Dashboard
 
-After GitHub Pages is enabled, the dashboard should be available at:
+Official published dashboard link:
 
-`https://jkiventuresai.github.io/dashboards-golf/`
+[Open the official live golf dashboard](https://jkiventuresai.github.io/dashboards-golf/index.html)
 
-The live page uses `index.html` in the root of the repository.
+The live page uses `index.html` in the root of the repository. The repository root URL may also load the same file, but the official share link is the direct `index.html` URL above.
 
 ## Current Dashboard Version
 
@@ -152,3 +158,5 @@ The root `index.html` should always be a copy of the newest approved dashboard v
 ## Current Status
 
 This repository is ready for GitHub upload and GitHub Pages publishing.
+
+Official live dashboard: [https://jkiventuresai.github.io/dashboards-golf/index.html](https://jkiventuresai.github.io/dashboards-golf/index.html)
