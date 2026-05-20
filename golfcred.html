@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Golf Score Card Certification Demo</title>
+<style>
+  :root {
+    --bg:#f4f6ef; --panel:#ffffff; --ink:#182318; --muted:#5f6b5f; --green:#174c2a; --green2:#2f7d46; --red:#9f2f26; --amber:#9a6a11; --line:#dce3d7; --soft:#edf4e8;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); color:var(--ink); }
+  header { background:var(--green); color:white; padding:28px 20px; }
+  .wrap { max-width:1180px; margin:0 auto; }
+  h1 { margin:0 0 8px; font-size:clamp(28px, 5vw, 48px); letter-spacing:-1.2px; }
+  h2 { margin:0 0 14px; font-size:22px; }
+  h3 { margin:0 0 8px; font-size:17px; }
+  p { line-height:1.45; }
+  .sub { color:#d8ead7; max-width:800px; margin:0; }
+  .grid { display:grid; grid-template-columns:repeat(12, 1fr); gap:16px; margin:20px 0; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:0 8px 20px rgba(22,44,20,.07); }
+  .span-3 { grid-column:span 3; } .span-4 { grid-column:span 4; } .span-5 { grid-column:span 5; } .span-7 { grid-column:span 7; } .span-8 { grid-column:span 8; } .span-12 { grid-column:span 12; }
+  .metric { font-size:34px; font-weight:800; margin:6px 0; }
+  .label { color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.06em; }
+  .pill { display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:7px 10px; font-size:13px; font-weight:700; }
+  .approved { background:#e3f3e4; color:#11642b; } .denied { background:#fae8e6; color:var(--red); } .review { background:#fff3d6; color:var(--amber); }
+  table { width:100%; border-collapse:collapse; font-size:14px; overflow:hidden; }
+  th,td { padding:11px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .player { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+  .score { font-size:42px; font-weight:900; line-height:1; }
+  .bar { height:10px; background:#e6ebdf; border-radius:99px; overflow:hidden; margin-top:8px; }
+  .bar > div { height:100%; background:var(--green2); width:70%; }
+  .bar.danger > div { background:var(--red); }
+  .logic { display:grid; gap:10px; }
+  .logic div { padding:12px; border:1px solid var(--line); border-radius:14px; background:#fbfcf8; }
+  button, .btn { border:0; background:var(--green); color:white; padding:11px 14px; border-radius:12px; font-weight:700; cursor:pointer; }
+  input, select { width:100%; padding:11px; border-radius:12px; border:1px solid var(--line); background:white; }
+  .formgrid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .muted { color:var(--muted); }
+  .alert { border-left:5px solid var(--red); background:#fff7f6; padding:14px; border-radius:14px; }
+  .valid { border-left:5px solid var(--green2); background:#f0f8ef; padding:14px; border-radius:14px; }
+  .small { font-size:13px; }
+  footer { padding:24px 20px 40px; color:var(--muted); }
+  @media(max-width:850px) { .span-3,.span-4,.span-5,.span-7,.span-8 { grid-column:span 12; } .formgrid { grid-template-columns:1fr; } header { padding:22px 16px; } .card { padding:15px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Golf Score Card Certification</h1>
+    <p class="sub">Friend-group accountability demo. Upload scorecards, rate peer credibility, compare against historical performance, and certify whether a round counts.</p>
+  </div>
+</header>
+<main class="wrap">
+  <section class="grid">
+    <div class="card span-3"><div class="label">Round Status</div><div class="metric" id="roundStatus">Denied</div><span class="pill denied">1 player denied</span></div>
+    <div class="card span-3"><div class="label">Group Avg Credibility</div><div class="metric">79.5</div><span class="muted small">Target: 80+</span></div>
+    <div class="card span-3"><div class="label">Cards Uploaded</div><div class="metric">4/4</div><span class="pill approved">Complete</span></div>
+    <div class="card span-3"><div class="label">AI Risk Flags</div><div class="metric">2</div><span class="pill review">Review needed</span></div>
+
+    <div class="card span-7">
+      <h2>Current Round Certification</h2>
+      <p class="muted">Demo round: Bridges Gunter. Rule: if any player is denied, the full group round does not count for internal standings.</p>
+      <div id="players" class="grid" style="margin-bottom:0"></div>
+    </div>
+
+    <div class="card span-5">
+      <h2>Mock Upload + Review</h2>
+      <div class="formgrid">
+        <label>Player<input value="Kyle" /></label>
+        <label>Course<input value="Bridges Gunter" /></label>
+        <label>Score<input value="82" /></label>
+        <label>Scorecard Photo<input type="file" /></label>
+        <label>Peer Credibility Score<select><option>61 - Questionable</option><option>80 - Normal</option><option>95 - Trusted</option></select></label>
+        <label>Attested By<select><option>Trevor, Pam, Lyle</option></select></label>
+      </div>
+      <p><button onclick="simulateReview()">Run Certification Check</button></p>
+      <div id="reviewBox" class="alert small"><strong>Demo result:</strong> Kyle is denied because the score improved 8.4 strokes below recent average while peer credibility fell under 70.</div>
+    </div>
+
+    <div class="card span-8">
+      <h2>Kyle Historical Performance Sample</h2>
+      <table><thead><tr><th>Date</th><th>Course</th><th>Score</th><th>Handicap</th><th>Card</th><th>Peer Cred.</th></tr></thead><tbody id="history"></tbody></table>
+    </div>
+
+    <div class="card span-4">
+      <h2>Certification Logic</h2>
+      <div class="logic small">
+        <div><strong>1. Scorecard evidence</strong><br>Card must be uploaded and readable.</div>
+        <div><strong>2. Peer credibility</strong><br>Friend group rates perceived honesty after the round.</div>
+        <div><strong>3. Historical comparison</strong><br>Submitted score is compared to recent scoring trend and handicap.</div>
+        <div><strong>4. Decision</strong><br>Approved, Review, or Denied. Any denial invalidates the group round.</div>
+      </div>
+    </div>
+
+    <div class="card span-12">
+      <h2>MVP Build Prompt Used</h2>
+      <p class="muted small">This was the internal build instruction used to create the demo. In a real Codex/Replit build, the next version would add accounts, real uploads, OCR, audit trail, and group rules.</p>
+      <pre style="white-space:pre-wrap;background:#101810;color:#eaf6e8;padding:14px;border-radius:14px;overflow:auto">Build a self-contained MVP demo for a Golf Score Card Certification website. It should let a friend group upload scorecard evidence, rate each player&#x27;s perceived honesty using a credibility score, compare the submitted round against each player&#x27;s historical scoring pattern, and return an Approved or Denied certification. If any player is denied, the round is marked invalid for group records. Use static demo data only. No backend, no login, no external libraries, and no network calls. Include a dashboard, player certification cards, historical rounds, scoring logic explanation, and a mock upload/review panel.</pre>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap small">Demo only. Uses static sample data and simulated certification logic. This is not an official handicap, GHIN, tournament, or USGA scoring system.</div></footer>
+<script>
+const players = [{"name": "Kyle", "avg": 90.4, "last": 82, "cred": 61, "delta": -8.4, "card": "Clean photo", "notes": "Large improvement vs recent trend and lower peer credibility. Flagged for review.", "status": "Denied"}, {"name": "Trevor", "avg": 94.1, "last": 92, "cred": 88, "delta": -2.1, "card": "Clean photo", "notes": "Score is inside normal range. Peer reviews consistent.", "status": "Approved"}, {"name": "Pam", "avg": 101.6, "last": 99, "cred": 93, "delta": -2.6, "card": "Clean photo", "notes": "Normal variance. No conflicts found.", "status": "Approved"}, {"name": "Lyle", "avg": 87.8, "last": 88, "cred": 76, "delta": 0.2, "card": "Photo blurry", "notes": "Score normal, but card image quality needs improvement.", "status": "Approved"}];
+const rounds = [{"date": "2026-02-10", "course": "Pecan Hollow", "score": 91, "handicap": 18.4, "card": "Uploaded", "groupScore": 91, "cred": 87}, {"date": "2026-02-22", "course": "Ridgeview Ranch", "score": 94, "handicap": 18.2, "card": "Uploaded", "groupScore": 94, "cred": 82}, {"date": "2026-03-05", "course": "Sherrill Park C1", "score": 89, "handicap": 17.9, "card": "Uploaded", "groupScore": 89, "cred": 90}, {"date": "2026-03-19", "course": "Firewheel Masters", "score": 96, "handicap": 18.0, "card": "Uploaded", "groupScore": 96, "cred": 78}, {"date": "2026-04-04", "course": "Buffalo Creek", "score": 88, "handicap": 17.3, "card": "Uploaded", "groupScore": 88, "cred": 91}, {"date": "2026-04-18", "course": "Tanglewood", "score": 93, "handicap": 17.1, "card": "Uploaded", "groupScore": 93, "cred": 84}, {"date": "2026-05-02", "course": "Plantation", "score": 90, "handicap": 16.8, "card": "Uploaded", "groupScore": 90, "cred": 89}, {"date": "2026-05-16", "course": "Bridges Gunter", "score": 82, "handicap": 16.6, "card": "Uploaded", "groupScore": 82, "cred": 61}];
+function statusClass(s){return s==='Approved'?'approved':s==='Denied'?'denied':'review'}
+function renderPlayers(){
+  const root=document.getElementById('players'); root.innerHTML='';
+  players.forEach(p=>{
+    const div=document.createElement('div'); div.className='card span-6'; div.style.boxShadow='none';
+    const risk=p.status==='Denied';
+    div.innerHTML=`<div class="player"><div><h3>${p.name}</h3><span class="pill ${statusClass(p.status)}">${p.status}</span></div><div class="score">${p.last}</div></div>
+    <p class="small muted">Avg: ${p.avg} | Delta: ${p.delta} | Card: ${p.card}</p>
+    <div class="label">Credibility ${p.cred}/100</div><div class="bar ${risk?'danger':''}"><div style="width:${p.cred}%"></div></div>
+    <p class="small">${p.notes}</p>`;
+    root.appendChild(div);
+  })
+}
+function renderHistory(){
+ const tbody=document.getElementById('history'); tbody.innerHTML='';
+ rounds.forEach(r=>{
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td>${r.date}</td><td>${r.course}</td><td><strong>${r.score}</strong></td><td>${r.handicap}</td><td>${r.card}</td><td>${r.cred}</td>`;
+  tbody.appendChild(tr);
+ })
+}
+function simulateReview(){
+ const box=document.getElementById('reviewBox');
+ box.className='alert small';
+ box.innerHTML='<strong>Certification complete:</strong> Round denied. Kyle requires manual scorecard review before this round can count.';
+}
+renderPlayers(); renderHistory();
+</script>
+</body>
+</html>
