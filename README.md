@@ -9,7 +9,8 @@ Repository: [dashboards-golf](https://github.com/jkiventuresai/dashboards-golf)
 
 Official published dashboard link:
 
-[Open the official live golf dashboard](https://jkiventuresai.github.io/dashboards-golf/index.html)
+[Open live golf dashboard](https://jkiventuresai.github.io/dashboards-golf/2026.html)
+[mobile version](https://jkiventuresai.github.io/dashboards-golf/2026-mobile.html)
 
 The live page uses `index.html` in the root of the repository. The repository root URL may also load the same file, but the official share link is the direct `index.html` URL above.
 
