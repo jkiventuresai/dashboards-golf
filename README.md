@@ -2,18 +2,13 @@
 
 Interactive golf performance dashboard for tracking scoring trends, handicap movement, course performance, shot patterns, club yardages, and course locations.
 
-Repository: [dashboards-golf](https://github.com/jkiventuresai/dashboards-golf)
 
+## Current links Dashboard
 
-## Live Dashboard
-
-Official published dashboard link:
 
 [Open live golf dashboard](https://jkiventuresai.github.io/dashboards-golf/2026.html)
 
 [mobile version](https://jkiventuresai.github.io/dashboards-golf/2026-mobile.html)
-
-The live page uses `index.html` in the root of the repository. The repository root URL may also load the same file, but the official share link is the direct `index.html` URL above.
 
 
 ## What This Dashboard Tracks
@@ -45,7 +40,7 @@ The live page uses `index.html` in the root of the repository. The repository ro
 - Club yardage mapping
 - Yardage gap review
 
-### Course Location Map
+
 
 - Displays course locations geographically
 - Shows where rounds have been played
