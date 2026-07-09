@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Golf Today Confirmation Form</title>
+  <style>
+    :root{--green:#176b3a;--green-dark:#0f4f2a;--blue:#1f7aff;--bg:#f4f7f3;--card:#fff;--text:#172018;--muted:#5b665d;--border:#d8e0d8;--choice-bg:#f7faf7}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);padding:20px}.wrap{max-width:680px;margin:0 auto}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.08)}h1{margin:0 0 8px;font-size:28px;line-height:1.15}h2{margin-bottom:12px}.sub{margin:0 0 22px;color:var(--muted);font-size:15px;line-height:1.45}.field-label{display:block;font-weight:700;margin:18px 0 7px}input[type="text"],input[type="tel"],textarea{width:100%;border:1px solid var(--border);border-radius:12px;padding:13px;font-size:16px;background:#fff;color:var(--text)}textarea{min-height:80px;resize:vertical}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{display:flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:14px;background:var(--choice-bg);padding:14px;font-size:16px;cursor:pointer;min-height:52px}.choice input{width:18px;height:18px;accent-color:var(--green)}.other-time{margin-top:10px;display:none}button,.sms-button{display:block;width:100%;border:0;border-radius:14px;padding:15px 16px;font-size:17px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;margin-top:18px}button.primary{background:var(--green);color:#fff}button.primary:hover{background:var(--green-dark)}button.secondary{background:#eef4ef;color:var(--green-dark);border:1px solid var(--border)}.sms-button{background:var(--blue);color:#fff}.output{margin-top:24px;display:none;border-top:1px solid var(--border);padding-top:22px}.message-box{background:#f7faf7;border:1px solid var(--border);border-radius:14px;padding:14px;white-space:pre-wrap;font-size:16px;line-height:1.45;min-height:100px}.note{color:var(--muted);font-size:13px;line-height:1.4;margin-top:10px}.home-link{display:inline-block;margin-bottom:12px;color:var(--green-dark);font-weight:700;text-decoration:none}@media(max-width:560px){body{padding:12px}.card{padding:18px}h1{font-size:24px}.choice-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="home-link" href="readme.html">← Golf Dashboard Home</a>
+    <section class="card">
+      <h1>Golf Today?</h1>
+      <p class="sub">Complete this form to confirm whether we are playing today. After submitting, copy the generated text and send it by iMessage.</p>
+      <form id="golfForm">
+        <span class="field-label">Are we playing golf today?</span>
+        <div class="choice-grid"><label class="choice"><input type="radio" name="playing" value="Yes" required />Yes</label><label class="choice"><input type="radio" name="playing" value="No" />No</label></div>
+        <span class="field-label">Location</span>
+        <div class="choice-grid"><label class="choice"><input type="radio" name="location" value="Firewheel" required />Firewheel</label><label class="choice"><input type="radio" name="location" value="Plantation" />Plantation</label></div>
+        <span class="field-label">Time</span>
+        <div class="choice-grid"><label class="choice"><input type="radio" name="timeChoice" value="2:30pm" required />2:30pm</label><label class="choice"><input type="radio" name="timeChoice" value="Other" />Other</label></div>
+        <div id="otherTimeWrap" class="other-time"><label class="field-label" for="otherTime">Other Time</label><input id="otherTime" type="text" placeholder="Example: 3:15pm" /></div>
+        <label class="field-label" for="notes">Notes</label><textarea id="notes" placeholder="Example: I can only play 9 holes."></textarea>
+        <label class="field-label" for="phone">iMessage Phone Number</label><input id="phone" type="tel" value="" />
+        <button class="primary" type="submit">Generate iMessage Text</button>
+      </form>
+      <section id="output" class="output"><h2>Copy/Paste iMessage</h2><div id="messageBox" class="message-box"></div><button id="copyBtn" class="secondary" type="button">Copy Text</button><a id="smsLink" class="sms-button" href="#">Open Messages</a><p class="note">The Open Messages button uses an SMS/iMessage link. On iPhone, it may open Messages with the text prefilled depending on browser and security settings. If it does not prefill, use the copy button and paste manually.</p></section>
+    </section>
+  </main>
+  <script>
+    const form=document.getElementById('golfForm'),output=document.getElementById('output'),messageBox=document.getElementById('messageBox'),copyBtn=document.getElementById('copyBtn'),smsLink=document.getElementById('smsLink'),otherTimeWrap=document.getElementById('otherTimeWrap'),otherTimeInput=document.getElementById('otherTime');
+    document.querySelectorAll('input[name="timeChoice"]').forEach(radio=>{radio.addEventListener('change',()=>{if(radio.value==='Other'&&radio.checked){otherTimeWrap.style.display='block';otherTimeInput.required=true}else if(radio.checked){otherTimeWrap.style.display='none';otherTimeInput.required=false;otherTimeInput.value=''}})});
+    form.addEventListener('submit',function(event){event.preventDefault();const playing=document.querySelector('input[name="playing"]:checked').value;const location=document.querySelector('input[name="location"]:checked').value;const timeChoice=document.querySelector('input[name="timeChoice"]:checked').value;const time=timeChoice==='Other'?otherTimeInput.value.trim():timeChoice;const notes=document.getElementById('notes').value.trim();const phone=document.getElementById('phone').value.trim().replace(/[^\d+]/g,'');let message=`Golf today: ${playing}\nLocation: ${location}\nTime: ${time}`;if(notes){message+=`\nNotes: ${notes}`}messageBox.textContent=message;output.style.display='block';const encodedMessage=encodeURIComponent(message);smsLink.href=phone?`sms:${phone}&body=${encodedMessage}`:`sms:&body=${encodedMessage}`;output.scrollIntoView({behavior:'smooth'})});
+    copyBtn.addEventListener('click',async function(){try{await navigator.clipboard.writeText(messageBox.textContent);copyBtn.textContent='Copied';setTimeout(()=>copyBtn.textContent='Copy Text',1400)}catch(error){alert('Copy failed. Press and hold the text, then copy manually.')}});
+  </script>
+</body>
+</html>
