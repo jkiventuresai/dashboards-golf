@@ -1,0 +1,3 @@
+Type,Formula,,,,,
+GHIN Score,"LET(r,TAKE([score column],-20),AVERAGE(TAKE(SORT(r,1,1),8)))",,,,,
+GHIN Handicap,"LET(r,TAKE([handicap column],-20),AVERAGE(TAKE(SORT(r,1,1),8)))",,,,,

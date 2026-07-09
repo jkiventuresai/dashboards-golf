@@ -1,0 +1,22 @@
+order_id,club_type,club_name,club,club_brand,club_model,yards_min,yard_max,status_desc,last_updated
+1,driver,driver,dr,callaway,paradym,250,300,active,1/1/2026
+5,hybrid,hybrid,4h,nike,cavity,240,250,active,1/1/2026
+6,iron,3 iron,3i,nike,vr blade,210,220,active,1/1/2026
+7,iron,4 iron,4i,nike,vr blade,190,200,active,1/1/2026
+8,iron,5 iron,5i,nike,cavity,200,190,inactive,1/1/2026
+8,iron,5 iron,5i,nike,vr blade,170,180,active,1/1/2026
+9,iron,6 iron,6i,nike,cavity,180,170,inactive,1/1/2026
+9,iron,6 iron,6i,nike,vr blade,160,170,active,1/1/2026
+10,iron,7 iron,7i,nike,cavity,150,160,inactive,1/1/2026
+10,iron,7 iron,7i,nike,vr blade,150,160,active,1/1/2026
+11,iron,8 iron,8i,nike,cavity,140,150,inactive,1/1/2026
+11,iron,8 iron,8i,nike,vr blade,140,150,active,1/1/2026
+12,iron,9 iron,9i,nike,cavity,130,140,inactive,1/1/2026
+12,iron,9 iron,9i,nike,vr blade,120,140,active,1/1/2026
+13,wedge,pitching wedge,p,nike,cavity,100,120,inactive,1/1/2026
+13,wedge,pitching wedge,p,nike,vr blade,110,120,active,1/1/2026
+14,wedge,52 degree,52w,golden bear,blade,90,100,inactive,1/1/2026
+15,wedge,56 degree,56w,golden bear,blade,70,90,inactive,1/1/2026
+15,wedge,56 degree,56w,pxg,sugar III,90,100,active,1/1/2026
+17,wedge,60 degree,60w,callaway,rtz ,40,70,active,1/1/2026
+17,wedge,60 degree,60w,golden bear,blade,40,60,inactive,1/1/2026
