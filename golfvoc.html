@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post Golf Survey</title>
+  <style>
+    :root{--green:#176b3a;--green-dark:#0f4f2a;--blue:#1f7aff;--bg:#f3f6f2;--card:#fff;--border:#d7dfd7;--text:#162018;--muted:#5d675f}
+    *{box-sizing:border-box}body{margin:0;padding:20px;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--text)}.container{max-width:700px;margin:0 auto}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.08)}h1{margin:0 0 10px;font-size:30px}.sub{color:var(--muted);margin-bottom:24px;line-height:1.45}.label{display:block;font-weight:700;margin:18px 0 8px}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{border:1px solid var(--border);border-radius:14px;padding:14px;background:#f7faf7;display:flex;align-items:center;gap:10px;cursor:pointer}.choice input{width:18px;height:18px;accent-color:var(--green)}textarea,input[type='tel']{width:100%;border:1px solid var(--border);border-radius:12px;padding:14px;font-size:16px}textarea{min-height:120px;resize:vertical}button,.sms-btn{width:100%;margin-top:18px;border:none;border-radius:14px;padding:15px;font-size:17px;font-weight:700;cursor:pointer;text-decoration:none;display:block;text-align:center}.primary{background:var(--green);color:#fff}.primary:hover{background:var(--green-dark)}.secondary{background:#eef4ef;color:var(--green-dark);border:1px solid var(--border)}.sms-btn{background:var(--blue);color:#fff}.output{display:none;margin-top:26px;padding-top:22px;border-top:1px solid var(--border)}.message-box{border:1px solid var(--border);background:#f7faf7;border-radius:14px;padding:14px;white-space:pre-wrap;line-height:1.5}.note{font-size:13px;color:var(--muted);margin-top:10px}.home-link{display:inline-block;margin-bottom:12px;color:var(--green-dark);font-weight:700;text-decoration:none}@media(max-width:560px){body{padding:12px}.card{padding:18px}.choice-grid{grid-template-columns:1fr}h1{font-size:24px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="home-link" href="readme.html">← Golf Dashboard Home</a>
+    <div class="card">
+      <h1>Post Golf Survey</h1>
+      <div class="sub">Quick feedback survey after the round.</div>
+      <form id="surveyForm">
+        <div class="label">How was the golf day overall?</div>
+        <div class="choice-grid"><label class="choice"><input type="radio" name="rating" value="Great" required>Great</label><label class="choice"><input type="radio" name="rating" value="Good">Good</label><label class="choice"><input type="radio" name="rating" value="Average">Average</label><label class="choice"><input type="radio" name="rating" value="Bad">Bad</label></div>
+        <div class="label">What went well?</div><textarea id="goodThings" placeholder="Example: pace of play, course condition, good vibes"></textarea>
+        <div class="label">Could anything have been better?</div><textarea id="improvements" placeholder="Example: tee time, course choice, pace, communication"></textarea>
+        <div class="label">Would you play again?</div>
+        <div class="choice-grid"><label class="choice"><input type="radio" name="again" value="Yes" required>Yes</label><label class="choice"><input type="radio" name="again" value="No">No</label></div>
+        <div class="label">iMessage Phone Number</div><input id="phone" type="tel" value="214-668-6241">
+        <button type="submit" class="primary">Generate Feedback Message</button>
+      </form>
+      <div id="output" class="output"><h2>Copy/Paste Feedback</h2><div id="messageBox" class="message-box"></div><button id="copyBtn" class="secondary" type="button">Copy Text</button><a id="smsLink" class="sms-btn" href="#">Open Messages</a><div class="note">iPhone behavior may vary depending on browser/security settings.</div></div>
+    </div>
+  </div>
+  <script>
+    const form=document.getElementById('surveyForm'),output=document.getElementById('output'),messageBox=document.getElementById('messageBox'),copyBtn=document.getElementById('copyBtn'),smsLink=document.getElementById('smsLink');
+    form.addEventListener('submit',function(e){e.preventDefault();const rating=document.querySelector('input[name="rating"]:checked').value;const goodThings=document.getElementById('goodThings').value.trim();const improvements=document.getElementById('improvements').value.trim();const again=document.querySelector('input[name="again"]:checked').value;const phone=document.getElementById('phone').value.trim().replace(/[^\d+]/g,'');let message=`Post Golf Survey\n\nOverall: ${rating}\n\nWhat went well:\n${goodThings||'N/A'}\n\nCould have been better:\n${improvements||'N/A'}\n\nPlay again:\n${again}`;messageBox.textContent=message;output.style.display='block';const encoded=encodeURIComponent(message);smsLink.href=`sms:${phone}&body=${encoded}`;output.scrollIntoView({behavior:'smooth'});});
+    copyBtn.addEventListener('click',async function(){try{await navigator.clipboard.writeText(messageBox.textContent);copyBtn.textContent='Copied';setTimeout(()=>{copyBtn.textContent='Copy Text';},1400);}catch(err){alert('Copy failed. Copy manually.');}});
+  </script>
+</body>
+</html>
