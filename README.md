@@ -16,6 +16,8 @@ Other experimentals
 
 [Compact](https://jkiventuresai.github.io/dashboards-golf/2026_compact.html)
 
+[Form Demo](https://jkiventuresai.github.io/dashboards-golf/golf-today.html)
+
 
 ## What This Dashboard Tracks
 
