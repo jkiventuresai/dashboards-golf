@@ -30,8 +30,6 @@
     a.button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:14px;padding:13px 16px;font-weight:800;border:1px solid var(--green);min-height:46px}
     a.primary{background:var(--green);color:#fff}
     a.secondary{background:#fff;color:var(--green)}
-    .status{border-left:4px solid var(--green);background:#f7faf7;border-radius:14px;padding:12px 14px;margin-top:16px}
-    .status strong{color:var(--green)}
     footer{margin-top:18px;color:var(--muted);font-size:12px;text-align:center}
     @media(max-width:720px){header,main{padding-left:16px;padding-right:16px}.cta-row a.button{width:100%}}
   </style>
@@ -47,20 +45,14 @@
   <main>
     <section class="wrap panel">
       <h2>Active Dashboard</h2>
-      <p>The main dashboard is <strong>dashboard-v9.html</strong>. It uses the updated score data and restored full 2026 dashboard layout with charts, insights, tables, and course performance views.</p>
       <div class="cta-row">
         <a class="button primary" href="dashboard-v9.html">Open Active Dashboard</a>
       </div>
 
       <h3>Golf Forms</h3>
-      <p>Quick forms for golf-day coordination and post-round feedback.</p>
       <div class="cta-row">
         <a class="button secondary" href="golfform.html">Golf Today Form</a>
         <a class="button secondary" href="golfvoc.html">Post Golf Survey</a>
-      </div>
-
-      <div class="status">
-        <strong>Current setup:</strong> dashboard-v9.html loads the external data file from <code>data/rounds-v9.json</code>, so the dashboard can be refreshed by updating the data file without rebuilding the whole page.
       </div>
     </section>
 
