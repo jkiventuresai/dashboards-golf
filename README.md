@@ -2,6 +2,7 @@
 
 Interactive golf performance dashboard for tracking scoring trends, handicap movement, course performance, shot patterns, club yardages, and course locations.
 
+[Landing Page](https://jkiventuresai.github.io/dashboards-golf/readme.html)
 
 ## Current links Dashboard
 
