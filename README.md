@@ -5,14 +5,15 @@ Interactive golf performance dashboard for tracking scoring trends, handicap mov
 
 ## Current links Dashboard
 
+[Active](https://jkiventuresai.github.io/dashboards-golf/dashboard-v9.html)
+
+Other experimentals
 
 [Desktop](https://jkiventuresai.github.io/dashboards-golf/2026.html)
 
 [Mobile](https://jkiventuresai.github.io/dashboards-golf/2026m.html)
 
-[experimental v9](https://jkiventuresai.github.io/dashboards-golf/dashboard-v9.html)
-
-[xperimental v2](https://jkiventuresai.github.io/dashboards-golf/2026_compact.html)
+[Compact](https://jkiventuresai.github.io/dashboards-golf/2026_compact.html)
 
 
 ## What This Dashboard Tracks
