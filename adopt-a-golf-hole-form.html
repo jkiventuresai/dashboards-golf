@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adopt a Golf Hole — Course Renovation Interest Form</title>
+  <style>
+    :root{
+      --green:#176b3a;
+      --green-dark:#0f4f2a;
+      --blue:#1f7aff;
+      --bg:#f4f7f3;
+      --card:#fff;
+      --text:#172018;
+      --muted:#5b665d;
+      --border:#d8e0d8;
+      --choice-bg:#f7faf7;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      padding:20px;
+    }
+    .wrap{max-width:680px;margin:0 auto}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 8px 24px rgba(0,0,0,.08);
+    }
+    h1{margin:0 0 8px;font-size:28px;line-height:1.15}
+    h2{margin-bottom:12px}
+    .sub{
+      margin:0 0 22px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.55;
+    }
+    .goal-box{
+      background:var(--choice-bg);
+      border:1px solid var(--border);
+      border-left:5px solid var(--green);
+      border-radius:14px;
+      padding:14px 16px;
+      margin-bottom:22px;
+      font-size:14px;
+      line-height:1.5;
+    }
+    .field-label{
+      display:block;
+      font-weight:700;
+      margin:18px 0 7px;
+      line-height:1.35;
+    }
+    input[type="text"],
+    input[type="number"],
+    textarea{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:13px;
+      font-size:16px;
+      background:#fff;
+      color:var(--text);
+    }
+    textarea{min-height:96px;resize:vertical}
+    .money-wrap{position:relative}
+    .money-symbol{
+      position:absolute;
+      left:14px;
+      top:50%;
+      transform:translateY(-50%);
+      font-weight:700;
+      color:var(--muted);
+    }
+    .money-wrap input{padding-left:30px}
+    .hint{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+      margin:6px 0 0;
+    }
+    button{
+      display:block;
+      width:100%;
+      border:0;
+      border-radius:14px;
+      padding:15px 16px;
+      font-size:17px;
+      font-weight:700;
+      cursor:pointer;
+      text-align:center;
+      margin-top:18px;
+    }
+    button.primary{background:var(--green);color:#fff}
+    button.primary:hover{background:var(--green-dark)}
+    button.secondary{
+      background:#eef4ef;
+      color:var(--green-dark);
+      border:1px solid var(--border);
+    }
+    .output{
+      margin-top:24px;
+      display:none;
+      border-top:1px solid var(--border);
+      padding-top:22px;
+    }
+    .message-box{
+      background:#f7faf7;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      white-space:pre-wrap;
+      font-size:15px;
+      line-height:1.5;
+      min-height:120px;
+    }
+    .note{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+      margin-top:10px;
+    }
+    .home-link{
+      display:inline-block;
+      margin-bottom:12px;
+      color:var(--green-dark);
+      font-weight:700;
+      text-decoration:none;
+    }
+    @media(max-width:560px){
+      body{padding:12px}
+      .card{padding:18px}
+      h1{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="home-link" href="readme.html">← Golf Dashboard Home</a>
+
+    <section class="card">
+      <h1>Adopt a Golf Hole</h1>
+      <p class="sub">
+        This form is designed to measure local interest in funding golf course improvements.
+        The idea is similar to an “Adopt a Highway” program: golfers, residents, businesses,
+        and community groups could contribute toward restoring individual holes or other
+        high-priority areas at local courses.
+      </p>
+
+      <div class="goal-box">
+        <strong>Goal:</strong> Identify the courses and holes golfers care about most,
+        estimate realistic community funding interest, and prioritize renovation projects
+        that could return neglected golf facilities to top-tier playing condition.
+        Completing this form does not create a binding donation commitment.
+      </div>
+
+      <form id="renovationForm">
+        <label class="field-label" for="favoriteCourse">
+          1. What is your favorite course to play?
+        </label>
+        <input id="favoriteCourse" type="text" placeholder="Enter the golf course name" required />
+
+        <label class="field-label" for="favoriteHole">
+          2. What is your favorite golf course hole?
+        </label>
+        <input id="favoriteHole" type="text" placeholder="Example: Hole 7 at Sherrill Park Course 1" required />
+
+        <label class="field-label" for="worstCondition">
+          3. In your opinion, what course is currently in the worst condition that you would pay extra to have renovated?
+        </label>
+        <textarea id="worstCondition" placeholder="Name the course and briefly describe the condition or problem areas." required></textarea>
+
+        <label class="field-label" for="maxDonation">
+          4. What is the absolute maximum amount you would donate toward that hole to see it renovated back to top-tier condition?
+        </label>
+        <div class="money-wrap">
+          <span class="money-symbol">$</span>
+          <input id="maxDonation" type="number" inputmode="decimal" min="0" step="1" placeholder="0" required />
+        </div>
+        <p class="hint">Enter a whole-dollar amount. This is an expression of interest, not a binding pledge.</p>
+
+        <label class="field-label" for="recommendations">
+          5. Are there any other courses, holes, or recommendations you would like to see addressed in your local golfing area?
+        </label>
+        <textarea id="recommendations" placeholder="List other courses, specific holes, drainage issues, greens, bunkers, cart paths, clubhouses, or other improvements."></textarea>
+
+        <button class="primary" type="submit">Generate Response Summary</button>
+      </form>
+
+      <section id="output" class="output">
+        <h2>Response Summary</h2>
+        <div id="messageBox" class="message-box"></div>
+        <button id="copyBtn" class="secondary" type="button">Copy Response</button>
+        <p class="note">
+          Copy the response and send it by email, text message, or paste it into your preferred survey collection system.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('renovationForm');
+    const output = document.getElementById('output');
+    const messageBox = document.getElementById('messageBox');
+    const copyBtn = document.getElementById('copyBtn');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const favoriteCourse = document.getElementById('favoriteCourse').value.trim();
+      const favoriteHole = document.getElementById('favoriteHole').value.trim();
+      const worstCondition = document.getElementById('worstCondition').value.trim();
+      const maxDonation = Number(document.getElementById('maxDonation').value);
+      const recommendations = document.getElementById('recommendations').value.trim();
+
+      const formattedDonation = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      }).format(maxDonation);
+
+      let message =
+`ADOPT A GOLF HOLE — RENOVATION INTEREST RESPONSE
+
+Favorite course to play:
+${favoriteCourse}
+
+Favorite golf course hole:
+${favoriteHole}
+
+Course most in need of renovation:
+${worstCondition}
+
+Maximum potential donation:
+${formattedDonation}
+
+Other courses or recommendations:
+${recommendations || 'None provided'}`;
+
+      messageBox.textContent = message;
+      output.style.display = 'block';
+      output.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    copyBtn.addEventListener('click', async function() {
+      try {
+        await navigator.clipboard.writeText(messageBox.textContent);
+        copyBtn.textContent = 'Copied';
+        setTimeout(() => copyBtn.textContent = 'Copy Response', 1400);
+      } catch (error) {
+        alert('Copy failed. Press and hold the response text, then copy it manually.');
+      }
+    });
+  </script>
+</body>
+</html>
